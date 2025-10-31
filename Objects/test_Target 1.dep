@@ -35,7 +35,7 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\Start\stm32f10x.h)(0x4D783CB4)()
-F (.\User\main.c)(0x69021A11)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_ldm -I .\Start -I .\User -I .\Library -I .\System -I .\Hardware --no-multibyte-chars-I.\RTE\_Target_1-ID:\Kail5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Kail5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\User\main.c)(0x69023C9E)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_ldm -I .\Start -I .\User -I .\Library -I .\System -I .\Hardware --no-multibyte-chars-I.\RTE\_Target_1-ID:\Kail5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Kail5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)
 I (D:\Kail5\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -66,7 +66,7 @@ I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 I (.\System\Delay.h)(0x6130920D)
 I (.\Hardware\LED.h)(0x68E4C593)
-I (.\Hardware\Key.h)(0x68E4C35D)
+I (.\Hardware\Key.h)(0x69023197)
 I (.\Hardware\Buzzer.h)(0x68FC8F3F)
 I (.\Hardware\LightSenser.h)(0x68FC8F3F)
 I (.\Hardware\OLED.h)(0x6714E2A7)
@@ -77,7 +77,7 @@ I (.\System\Timer.h)(0x68EBBB36)
 I (.\Hardware\PWM.h)(0x68FCA776)
 I (.\Hardware\IC.h)(0x68FCD2CE)
 I (.\Hardware\EI.h)(0x68FCF425)
-I (.\Hardware\Serial.h)(0x68FF8422)
+I (.\Hardware\Serial.h)(0x6902237E)
 I (D:\Kail5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (D:\Kail5\ARM\ARMCC\include\string.h)(0x588B8344)
 F (.\User\stm32f10x_conf.h)(0x4D99A59E)()
@@ -855,7 +855,7 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\System\Delay.h)(0x6130920D)()
-F (.\System\Timer.c)(0x68FE33C9)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_ldm -I .\Start -I .\User -I .\Library -I .\System -I .\Hardware --no-multibyte-chars-I.\RTE\_Target_1-ID:\Kail5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Kail5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\timer.o --omf_browse .\objects\timer.crf --depend .\objects\timer.d)
+F (.\System\Timer.c)(0x6902253C)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_ldm -I .\Start -I .\User -I .\Library -I .\System -I .\Hardware --no-multibyte-chars-I.\RTE\_Target_1-ID:\Kail5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Kail5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\timer.o --omf_browse .\objects\timer.crf --depend .\objects\timer.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)
 I (D:\Kail5\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -915,7 +915,7 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\Hardware\LED.h)(0x68E4C593)()
-F (.\Hardware\Key.c)(0x68FF7A7E)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_ldm -I .\Start -I .\User -I .\Library -I .\System -I .\Hardware --no-multibyte-chars-I.\RTE\_Target_1-ID:\Kail5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Kail5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
+F (.\Hardware\Key.c)(0x69023321)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_ldm -I .\Start -I .\User -I .\Library -I .\System -I .\Hardware --no-multibyte-chars-I.\RTE\_Target_1-ID:\Kail5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Kail5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)
 I (D:\Kail5\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -945,7 +945,7 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 I (.\System\Delay.h)(0x6130920D)
-F (.\Hardware\Key.h)(0x68E4C35D)()
+F (.\Hardware\Key.h)(0x69023197)()
 F (.\Hardware\Buzzer.c)(0x68EB322E)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_ldm -I .\Start -I .\User -I .\Library -I .\System -I .\Hardware --no-multibyte-chars-I.\RTE\_Target_1-ID:\Kail5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Kail5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\buzzer.o --omf_browse .\objects\buzzer.crf --depend .\objects\buzzer.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)
@@ -1159,7 +1159,7 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\Hardware\EI.h)(0x68FCF425)()
-F (.\Hardware\Serial.c)(0x68FF8422)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_ldm -I .\Start -I .\User -I .\Library -I .\System -I .\Hardware --no-multibyte-chars-I.\RTE\_Target_1-ID:\Kail5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Kail5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\serial.o --omf_browse .\objects\serial.crf --depend .\objects\serial.d)
+F (.\Hardware\Serial.c)(0x69022A33)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_ldm -I .\Start -I .\User -I .\Library -I .\System -I .\Hardware --no-multibyte-chars-I.\RTE\_Target_1-ID:\Kail5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Kail5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\serial.o --omf_browse .\objects\serial.crf --depend .\objects\serial.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)
 I (D:\Kail5\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -1190,7 +1190,7 @@ I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 I (D:\Kail5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (D:\Kail5\ARM\ARMCC\include\stdarg.h)(0x588B8344)
-F (.\Hardware\Serial.h)(0x68FF8422)()
+F (.\Hardware\Serial.h)(0x6902237E)()
 F (.\Hardware\OLED.c)(0x67174FA9)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_ldm -I .\Start -I .\User -I .\Library -I .\System -I .\Hardware --no-multibyte-chars-I.\RTE\_Target_1-ID:\Kail5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\Kail5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\oled.o --omf_browse .\objects\oled.crf --depend .\objects\oled.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)

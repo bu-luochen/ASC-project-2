@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+
 char Serial_RxPacket[101];
 uint8_t Serial_RxFlag;
 
@@ -162,3 +163,14 @@ void Serial_Printf(char *format, ...)
 	
 	
 }
+
+void Serial_Tick(void)
+{
+	static int16_t Time;
+	Time ++;
+	if(Time >= 10){
+		Time = 0 ;
+		printf("%d\n",TIM_GetCounter(TIM2));
+	}
+}
+

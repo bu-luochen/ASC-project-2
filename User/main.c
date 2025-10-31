@@ -20,22 +20,39 @@ int main ()
 {	
 	OLED_Init();
 	LED_Init();
-	
-	
-	
+	Timer_Init();
+	Key_Init();
 	Serial_Init();
-	
-	
-	
+	uint8_t mode =0;
 	
 	while(1)
 	{
-		OLED_ShowString(0,0,"Hello,世界",OLED_8X16);
-		OLED_ShowFloatNum(0,16,12.345,2,3,OLED_8X16);
-		OLED_Printf(0,32,OLED_8X16,"Num=%d",666);
-		OLED_Update();
+		
+		
+		if ( Key_GetNum() == 1){
+			mode = (mode + 1) % 2;
+		}
+		switch(mode){
+			case 0:
+				
+				OLED_ShowString(0,0,"mission1",OLED_8X16);
+				break;
+			case 1:
+				OLED_ShowString(0,0,"mission2",OLED_8X16);
+				break;
 			
+		}
+		OLED_Update();
 	}
 	
+}
+
+void TIM2_IRQHandler(void)
+{
+	if(TIM_GetITStatus(TIM2,TIM_IT_Update)==SET){
+		Serial_Tick();
+		Key_Tick();
+		TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
+	}
 }
 
