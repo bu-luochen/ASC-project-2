@@ -19,7 +19,8 @@
 float Target = 0,Actual = 0,Out = 0;
 float Kp = 0.3,Ki = 0.1,Kd = -0.1;
 float Error0 = 0,Error1 = 0,Error2 = 0;
-uint16_t Actual_mode = 0;
+uint8_t Actual_mode = 0,Target_mode = 0;
+uint8_t mode =0;
 int main ()
 {	
 	OLED_Init();
@@ -30,27 +31,42 @@ int main ()
 	EI_Init();
 	Motor_Init();
 	
-	uint8_t mode =0;
 	
 	while(1)
-	{
-		if(Serial_RxFlag == 1){
-			Target = 0;
-			if(Serial_RxPacket[0] == '-'){
-				for(int i = 1;Serial_RxPacket[i] != '%';i++){
-					Target = Target * 10 + (Serial_RxPacket[i] - '0');
-				}
-				if(Target >= 100){Target = 100;}
-				Target = -Target;
-			} else{  
-				for(int i = 0;Serial_RxPacket[i] != '%';i++){
-					Target = Target * 10 + (Serial_RxPacket[i] - '0');
-				}
-				if(Target >= 100){Target = 100;}
+	{	if(mode == 0){
+		
+			if(Target_mode == 1){
+				Target = 0;
+				Actual = 0;
+				Target_mode = 0;
 			}
+			if(Serial_RxFlag == 1){
+				Target = 0;
+				if(Serial_RxPacket[0] == '-'){
+					for(int i = 1;Serial_RxPacket[i] != '%';i++){
+						Target = Target * 10 + (Serial_RxPacket[i] - '0');
+					}
+					if(Target >= 100){Target = 100;}
+					Target = -Target;
+				} else{  
+					for(int i = 0;Serial_RxPacket[i] != '%';i++){
+						Target = Target * 10 + (Serial_RxPacket[i] - '0');
+					}
+					if(Target >= 100){Target = 100;}
+				}
+				
+				Serial_RxFlag = 0;
+				
+			}
+		} else if(mode == 1){
 			
-			Serial_RxFlag = 0;
-			
+			if(Target_mode == 0){
+				Target = 0;
+				Actual = 0;
+				Target_mode = 1;
+			}
+			Target = (EI_GetTim3() / 3);
+			Motor_SetSpeed(M2,(int)Target);
 		}
 		
 		if ( Key_GetNum() == 1){
@@ -66,23 +82,27 @@ int main ()
 				break;
 			
 		}
-		if(Target == 0){
+		
+		
+		if(Target == 0 && mode == 0){
 			if(Actual_mode == 1){
 				Actual_mode = 0;
 				Actual = 0;
 			}
 			Actual += (EI_GetTim3() / 3);//相当于单位为占空比
-		} else {
+		} else if(Target != 0 && mode == 0){
 			if(Actual_mode == 0){
 				Actual_mode = 1;
 				Actual = 0;
 			}
 			Actual = (EI_GetTim3() / 3);
-		}
+		} 
 		
-		OLED_Printf(0,16,OLED_8X16,"Target=%+04.0f",Target);
-		OLED_Printf(0,32,OLED_8X16,"Actual=%+04.0f",Actual);
-		OLED_Printf(0,48,OLED_8X16,"Out=%+04.0f",Out);
+		
+		
+		OLED_Printf(0,16,OLED_8X16,"Target=%+05.0f",Target);
+		OLED_Printf(0,32,OLED_8X16,"Actual=%+05.0f",Actual);
+		OLED_Printf(0,48,OLED_8X16,"Out=%+05.0f",Out);
 		OLED_Update();
 
 		
@@ -113,7 +133,11 @@ void TIM2_IRQHandler(void)
 			if(Out >= 100){Out = 100;}
 			if(Out <= -100){Out = -100;}
 			
-			Motor_SetSpeed(M1,Out);
+			if(mode == 0){
+				Motor_SetSpeed(M1,Out);
+			} 
+			
+			
 		}
 		
 		TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
