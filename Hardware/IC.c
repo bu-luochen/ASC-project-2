@@ -3,17 +3,20 @@
 void IC_Init(void)
 {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4,ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
-	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
 	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_IPU;
-	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_6;
+	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_6|GPIO_Pin_7;
 	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
+	GPIO_Init(GPIOB,&GPIO_InitStructure);
+	
 	
 	TIM_InternalClockConfig(TIM3);
-	
+	TIM_InternalClockConfig(TIM4);
 	//时机单元的时钟选择
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
 	TIM_TimeBaseInitStructure.TIM_ClockDivision=TIM_CKD_DIV1;
@@ -22,6 +25,7 @@ void IC_Init(void)
 	TIM_TimeBaseInitStructure.TIM_Prescaler = 72 - 1;//PSC
 	TIM_TimeBaseInitStructure.TIM_RepetitionCounter=0;
 	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseInitStructure);
+	TIM_TimeBaseInit(TIM4, &TIM_TimeBaseInitStructure);
 	
 	TIM_ICInitTypeDef TIM_ICInitStructure;
 	TIM_ICStructInit(&TIM_ICInitStructure);
@@ -32,12 +36,15 @@ void IC_Init(void)
 	TIM_ICInitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
 	TIM_PWMIConfig(TIM3,&TIM_ICInitStructure);//顺带配置另一个通道（通道二，Indirect，下降沿）
 	//TIM_ICInit(TIM3,&TIM_ICInitStructure);
+	TIM_PWMIConfig(TIM4,&TIM_ICInitStructure);
 	
-	TIM_SelectInputTrigger(TIM3, TIM_TS_TI1FP1);//?
+	TIM_SelectInputTrigger(TIM3, TIM_TS_TI1FP1);//设置从模式?
+	TIM_SelectInputTrigger(TIM4, TIM_TS_TI1FP1);
 	TIM_SelectSlaveMode(TIM3, TIM_SlaveMode_Reset);
+	TIM_SelectSlaveMode(TIM4, TIM_SlaveMode_Reset);
 	
 	TIM_Cmd(TIM3,ENABLE);
-	
+	TIM_Cmd(TIM4,ENABLE);
 	
 }
 

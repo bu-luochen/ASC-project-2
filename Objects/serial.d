@@ -30,3 +30,6 @@
 .\objects\serial.o: .\Library\misc.h
 .\objects\serial.o: D:\Kail5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\serial.o: D:\Kail5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\serial.o: Hardware\EI.h
+.\objects\serial.o: Hardware\OLED.h
+.\objects\serial.o: Hardware\OLED_Data.h

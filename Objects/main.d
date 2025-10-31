@@ -39,6 +39,7 @@
 .\objects\main.o: .\Hardware\Encoder.h
 .\objects\main.o: .\System\Timer.h
 .\objects\main.o: .\Hardware\PWM.h
+.\objects\main.o: .\Hardware\Motor.h
 .\objects\main.o: .\Hardware\IC.h
 .\objects\main.o: .\Hardware\EI.h
 .\objects\main.o: .\Hardware\Serial.h

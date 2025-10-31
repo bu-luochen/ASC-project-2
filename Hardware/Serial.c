@@ -1,10 +1,12 @@
 #include "stm32f10x.h"                  // Device header
 #include <stdio.h>
 #include <stdarg.h>
-
-
+#include "EI.h"
+#include "OLED.h"
 char Serial_RxPacket[101];
 uint8_t Serial_RxFlag;
+
+extern float Target ,Actual ,Out ;
 
 void Serial_SendByte(uint8_t Byte);
 void Serial_SendArray(uint8_t *Array,uint16_t Length);
@@ -39,8 +41,8 @@ void Serial_Init(void)
 	NVIC_InitTypeDef NVIC_InitStructure;
 	NVIC_InitStructure.NVIC_IRQChannel=USART1_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelCmd=ENABLE;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=1;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority=1;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority=0;
 	NVIC_Init(&NVIC_InitStructure);
 	
 	USART_Cmd(USART1,ENABLE);
@@ -83,6 +85,8 @@ void USART1_IRQHandler(void)
 			case 1:
 				if(RxData == '\r'){
 					RxState = 2;
+					
+					
 				} else {
 					Serial_RxPacket[pRxPacket] = RxData;
 					pRxPacket ++;
@@ -170,7 +174,7 @@ void Serial_Tick(void)
 	Time ++;
 	if(Time >= 10){
 		Time = 0 ;
-		printf("%d\n",TIM_GetCounter(TIM2));
+		printf("%.2f\r\n",Actual);
 	}
 }
 
