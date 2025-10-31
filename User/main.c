@@ -16,11 +16,14 @@
 #include <string.h>
 
 
+extern  uint16_t Time_Serial;
+
 float Target = 0,Actual = 0,Out = 0;
-float Kp = 0.5,Ki = 0.04,Kd = -0.1;
+float Kp = 0.5,Ki = 0.04,Kd = 0;
 float Error0 = 0,Error1 = 0,Error2 = 0;
 uint8_t Actual_mode = 0;
 uint8_t mode =0,Flag_change = 0;
+
 int main ()
 {	
 	OLED_Init();
@@ -72,11 +75,18 @@ int main ()
 		
 		switch(mode){
 			case 0:
-				
+				OLED_Clear();
 				OLED_ShowString(0,0,"mission1",OLED_8X16);
+				OLED_Printf(0,16,OLED_8X16,"Target=%+05.0f",Target);
+				OLED_Printf(0,32,OLED_8X16,"Actual=%+05.0f",Actual);
+				OLED_Printf(0,48,OLED_8X16,"Out=%+05.0f",Out);
+				
 				break;
 			case 1:
+				OLED_Clear();
 				OLED_ShowString(0,0,"mission2",OLED_8X16);
+				OLED_Printf(0,16,OLED_8X16,"Position1=%+05.0f",Target);
+				OLED_Printf(0,32,OLED_8X16,"Position2=%+05.0f",Actual);
 				break;
 			
 		}
@@ -99,13 +109,16 @@ int main ()
 			
 		}
 		
-		
-		
-		OLED_Printf(0,16,OLED_8X16,"Target=%+05.0f",Target);
-		OLED_Printf(0,32,OLED_8X16,"Actual=%+05.0f",Actual);
-		OLED_Printf(0,48,OLED_8X16,"Out=%+05.0f",Out);
 		OLED_Update();
 
+		if(Time_Serial >= 10){
+			Time_Serial = 0 ;
+			if(Actual && mode == 0){
+				printf("%.2f\n",Actual);//???
+				
+			}
+		}
+		
 		
 	}
 	
@@ -116,6 +129,9 @@ void TIM2_IRQHandler(void)
 	static uint16_t Count;
 	if(TIM_GetITStatus(TIM2,TIM_IT_Update)==SET){
 		Serial_Tick();
+		
+		
+		
 		Key_Tick();
 		Count ++;
 		if(Count >= 20){

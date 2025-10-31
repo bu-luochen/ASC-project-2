@@ -36,7 +36,7 @@ void Key_Tick(void){
 	static uint8_t current;
 	static uint8_t previous;
 	Time ++;
-	if (Time >= 21){
+	if (Time >= 20){
 		Time = 0;
 		
 		previous = current;

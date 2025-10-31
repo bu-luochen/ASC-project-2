@@ -168,15 +168,12 @@ void Serial_Printf(char *format, ...)
 	
 }
 
+uint16_t Time_Serial;
+
 void Serial_Tick(void)
 {
-	static int16_t Time;
-	Time ++;
-	if(Time >= 10){
-		Time = 0 ;
-		if(Actual && mode == 0){
-			printf("%.2f\r\n",Actual);
-		}
-	}
+	
+	Time_Serial ++;
+		
 }
 
