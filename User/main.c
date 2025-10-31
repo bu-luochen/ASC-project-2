@@ -66,7 +66,7 @@ int main ()
 				Target_mode = 1;
 			}
 			Target = (EI_GetTim3() / 3);
-			Motor_SetSpeed(M2,(int)Target);
+			Motor_SetSpeed(M2,Target * 3);
 		}
 		
 		if ( Key_GetNum() == 1){
@@ -113,6 +113,7 @@ int main ()
 void TIM2_IRQHandler(void)
 {
 	static uint16_t Count;
+	static int16_t Speed;
 	if(TIM_GetITStatus(TIM2,TIM_IT_Update)==SET){
 		Serial_Tick();
 		Key_Tick();
@@ -137,6 +138,8 @@ void TIM2_IRQHandler(void)
 				Motor_SetSpeed(M1,Out);
 			} 
 			
+				
+		
 			
 		}
 		
