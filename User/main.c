@@ -17,7 +17,7 @@
 
 
 float Target = 0,Actual = 0,Out = 0;
-float Kp = 0.2,Ki = 0.2,Kd = 0;
+float Kp = 0.3,Ki = 0.1,Kd = -0.1;
 float Error0 = 0,Error1 = 0,Error2 = 0;
 
 int main ()
@@ -66,7 +66,7 @@ int main ()
 				break;
 			
 		}
-		Actual = EI_GetTim3() / 3;
+		Actual += (EI_GetTim3() / 3);//相当于单位为占空比
 		OLED_Printf(0,16,OLED_8X16,"Target=%+04.0f",Target);
 		OLED_Printf(0,32,OLED_8X16,"Actual=%+04.0f",Actual);
 		OLED_Printf(0,48,OLED_8X16,"Out=%+04.0f",Out);
@@ -84,13 +84,19 @@ void TIM2_IRQHandler(void)
 		Serial_Tick();
 		Key_Tick();
 		Count ++;
-		if(Count >= 40){
+		if(Count >= 20){
 			Count = 0;
 			
 			Error2 = Error1;
 			Error1 = Error0;
 			Error0 = Target - Actual;
-			Out += Kp * (Error0 - Error1) + Ki * Error0 + Kd * (Error0 - 2 * Error1 + Error2);
+			if(Error0 >= -3 && Error0 <= 3){
+				Out = 0;
+			} else {
+				Out += Kp * (Error0 - Error1) + Ki * Error0 + Kd * (Error0 - 2 * Error1 + Error2);
+			}
+			
+			
 			if(Out >= 100){Out = 100;}
 			if(Out <= -100){Out = -100;}
 			
