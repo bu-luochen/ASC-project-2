@@ -117,6 +117,9 @@ int main ()
 				printf("%.2f\n",Actual);//???
 				
 			}
+			if(mode == 1){
+				printf("%.2f,%.2f\n",Actual,Target);
+			}
 		}
 		
 		
