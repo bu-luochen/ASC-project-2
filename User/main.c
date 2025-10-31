@@ -111,16 +111,7 @@ int main ()
 		
 		OLED_Update();
 
-		if(Time_Serial >= 10){
-			Time_Serial = 0 ;
-			if(Actual && mode == 0){
-				printf("%.2f\n",Actual);//???
-				
-			}
-			if(mode == 1){
-				printf("%.2f,%.2f\n",Actual,Target);
-			}
-		}
+		
 		
 		
 	}

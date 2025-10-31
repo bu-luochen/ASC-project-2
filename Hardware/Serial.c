@@ -174,6 +174,15 @@ void Serial_Tick(void)
 {
 	
 	Time_Serial ++;
-		
+		if(Time_Serial >= 10){
+			Time_Serial = 0 ;
+			if(Actual && mode == 0){
+				printf("%.2f\n",Actual);//???
+				//if (Actual==0)printf("OK");
+			}
+			if(mode == 1){
+				printf("%.2f,%.2f\n",Actual,Target);
+			}
+		}
 }
 
