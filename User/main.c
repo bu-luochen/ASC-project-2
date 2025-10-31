@@ -17,7 +17,7 @@
 
 
 float Target = 0,Actual = 0,Out = 0;
-float Kp = 0.3,Ki = 0.1,Kd = -0.1;
+float Kp = 0.5,Ki = 0.04,Kd = -0.15;
 float Error0 = 0,Error1 = 0,Error2 = 0;
 uint8_t Actual_mode = 0,Target_mode = 0;
 uint8_t mode =0;
@@ -33,7 +33,8 @@ int main ()
 	
 	
 	while(1)
-	{	if(mode == 0){
+	{	
+		if(mode == 0){
 		
 			if(Target_mode == 1){
 				Target = 0;
@@ -65,8 +66,8 @@ int main ()
 				Actual = 0;
 				Target_mode = 1;
 			}
-			Target = (EI_GetTim3() / 3);
-			Motor_SetSpeed(M2,Target * 3);
+			Target += (EI_GetTim3() / 3);
+			
 		}
 		
 		if ( Key_GetNum() == 1){
@@ -96,7 +97,10 @@ int main ()
 				Actual = 0;
 			}
 			Actual = (EI_GetTim3() / 3);
-		} 
+		} else if(mode == 1){
+			Actual += (EI_GetTim4() / 3);
+			
+		}
 		
 		
 		
@@ -124,7 +128,7 @@ void TIM2_IRQHandler(void)
 			Error2 = Error1;
 			Error1 = Error0;
 			Error0 = Target - Actual;
-			if(Error0 >= -5 && Error0 <= 5 && Actual_mode == 0){
+			if(Error0 >= -3 && Error0 <= 3 && Actual_mode == 0){
 				Out = 0;
 			} else {
 				Out += Kp * (Error0 - Error1) + Ki * Error0 + Kd * (Error0 - 2 * Error1 + Error2);
@@ -137,7 +141,9 @@ void TIM2_IRQHandler(void)
 			if(mode == 0){
 				Motor_SetSpeed(M1,Out);
 			} 
-			
+			if(mode == 1){
+				Motor_SetSpeed(M2,Out);
+			} 
 				
 		
 			

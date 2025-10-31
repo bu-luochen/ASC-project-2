@@ -7,7 +7,7 @@ char Serial_RxPacket[101];
 uint8_t Serial_RxFlag;
 
 extern float Target ,Actual ,Out ;
-
+extern uint8_t mode ;
 void Serial_SendByte(uint8_t Byte);
 void Serial_SendArray(uint8_t *Array,uint16_t Length);
 
@@ -174,7 +174,7 @@ void Serial_Tick(void)
 	Time ++;
 	if(Time >= 10){
 		Time = 0 ;
-		if(Actual){
+		if(Actual && mode == 0){
 			printf("%.2f\r\n",Actual);
 		}
 	}
