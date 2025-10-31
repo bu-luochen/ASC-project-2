@@ -174,7 +174,9 @@ void Serial_Tick(void)
 	Time ++;
 	if(Time >= 10){
 		Time = 0 ;
-		printf("%.2f\r\n",Actual);
+		if(Actual){
+			printf("%.2f\r\n",Actual);
+		}
 	}
 }
 

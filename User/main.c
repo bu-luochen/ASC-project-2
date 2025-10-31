@@ -66,7 +66,7 @@ int main ()
 				break;
 			
 		}
-		Actual = EI_GetTim3();
+		Actual = EI_GetTim3() / 3;
 		OLED_Printf(0,16,OLED_8X16,"Target=%+04.0f",Target);
 		OLED_Printf(0,32,OLED_8X16,"Actual=%+04.0f",Actual);
 		OLED_Printf(0,48,OLED_8X16,"Out=%+04.0f",Out);
@@ -85,7 +85,7 @@ void TIM2_IRQHandler(void)
 		Key_Tick();
 		Count ++;
 		if(Count >= 40){
-		 
+			Count = 0;
 			
 			Error2 = Error1;
 			Error1 = Error0;
